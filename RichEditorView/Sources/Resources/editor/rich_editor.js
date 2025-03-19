@@ -232,6 +232,7 @@ RE.insertImage = function(url, alt) {
     var img = document.createElement('img');
     img.setAttribute("src", url);
     img.setAttribute("alt", alt);
+    img.setAttribute("style", "max-width: 100%");
     img.onload = RE.updateHeight;
 
     RE.insertHTML(img.outerHTML);
