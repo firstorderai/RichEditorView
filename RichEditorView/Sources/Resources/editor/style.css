@@ -60,6 +60,6 @@ body {
     color: #ccc;
 }
 
-h1, p, ul, ol {
+p, ul, ol {
     margin: 0;
 }
