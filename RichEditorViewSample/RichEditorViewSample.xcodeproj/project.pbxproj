@@ -540,9 +540,9 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		4886B7E72D6661B0006C6569 /* XCRemoteSwiftPackageReference "RichEditorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:T-Pro/RichEditorView.git";
+			repositoryURL = "git@github.com:firstorderai/RichEditorView.git";
 			requirement = {
-				branch = feature/swiftpm;
+				branch = master;
 				kind = branch;
 			};
 		};

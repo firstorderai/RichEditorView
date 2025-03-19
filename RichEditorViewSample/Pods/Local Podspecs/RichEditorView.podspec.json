@@ -1,0 +1,26 @@
+{
+  "name": "RichEditorView",
+  "version": "4.2.1",
+  "summary": "Rich Text Editor for iOS written in Swift",
+  "homepage": "https://github.com/T-Pro/RichEditorView",
+  "license": "BSD 3-clause",
+  "authors": {
+    "Caesar Wirth": "cjwirth@gmail.com",
+    "Pedro Paulo de Amorim": "pp.amorim@hotmail.com"
+  },
+  "source": {
+    "git": "https://github.com/T-Pro/RichEditorView.git",
+    "tag": "4.2.1"
+  },
+  "platforms": {
+    "ios": "9.3"
+  },
+  "swift_versions": "5.0",
+  "requires_arc": true,
+  "source_files": "RichEditorView/Sources/*",
+  "resources": [
+    "RichEditorView/Sources/Resources/icons/*",
+    "RichEditorView/Sources/Resources/editor/*"
+  ],
+  "swift_version": "5.0"
+}

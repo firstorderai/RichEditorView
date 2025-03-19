@@ -1,13 +1,13 @@
 {
-  "originHash" : "a1c2874af81cfd4b6bdb257fa3ae092f7f7ea6cfcbbb9490b79333bf50ca0ef5",
+  "originHash" : "569201797981a7c86374438dbbb59766183bdba485de3381650fafd525262b93",
   "pins" : [
     {
       "identity" : "richeditorview",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:T-Pro/RichEditorView.git",
+      "location" : "git@github.com:firstorderai/RichEditorView.git",
       "state" : {
-        "branch" : "feature/swiftpm",
-        "revision" : "c8363bc4e827a2a559c1958f86f304f38a48b52a"
+        "branch" : "master",
+        "revision" : "0f90dfcfd2e6b8f63b8d6cdddeb70cc103dd2afd"
       }
     }
   ],
