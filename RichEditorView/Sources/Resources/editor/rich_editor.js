@@ -206,13 +206,9 @@ RE.setHeading = function(heading) {
         }
         if (!node) return;
 
-        const brs = node.querySelectorAll('br');
-        brs.forEach(br => {
-            const wbr = document.createElement('wbr');
-            br.replaceWith(wbr);
-        });
-        if (node.innerHTML.trim() === '') {
-            node.innerHTML = '<wbr>';
+        const next = node.nextSibling;
+        if (next && next.nodeName === 'BR') {
+            next.remove();
         }
     }
 };
