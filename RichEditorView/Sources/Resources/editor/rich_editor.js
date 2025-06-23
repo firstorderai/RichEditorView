@@ -190,6 +190,31 @@ RE.setTextBackgroundColor = function(color) {
 
 RE.setHeading = function(heading) {
     document.execCommand('formatBlock', false, '<h' + heading + '>');
+
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return;
+
+    const range = selection.getRangeAt(0);
+    if (range.collapsed) {
+        let node = range.startContainer;
+
+        if (node.nodeType === Node.TEXT_NODE) {
+            node = node.parentNode;
+        }
+        while (node && !/^H[1-6]$/.test(node.nodeName)) {
+            node = node.parentNode;
+        }
+        if (!node) return;
+
+        const brs = node.querySelectorAll('br');
+        brs.forEach(br => {
+            const wbr = document.createElement('wbr');
+            br.replaceWith(wbr);
+        });
+        if (node.innerHTML.trim() === '') {
+            node.innerHTML = '<wbr>';
+        }
+    }
 };
 
 RE.setIndent = function() {
