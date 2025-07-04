@@ -433,7 +433,7 @@ private let DefaultInnerLineHeight: Int = 21
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // empy
-        delegate?.richEditorDidFinished(self)
+        delegate?.richEditorDidFinished?(self)
     }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
