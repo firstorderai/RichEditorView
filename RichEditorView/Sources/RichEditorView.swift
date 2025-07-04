@@ -33,6 +33,9 @@ private let DefaultInnerLineHeight: Int = 21
     /// More concretely, is called when the internal WKWebView loads for the first time, and contentHTML is set
     @objc optional func richEditorDidLoad(_ editor: RichEditorView)
     
+    /// Called when the RichEditorView.webView has did Finished
+    @objc optional func richEditorDidFinished(_ editor: RichEditorView)
+    
     /// Called when the internal WKWebView begins loading a URL that it does not know how to respond to
     /// For example, if there is an external link, and then the user taps it
     @objc optional func richEditor(_ editor: RichEditorView, shouldInteractWith url: URL) -> Bool
@@ -430,6 +433,7 @@ private let DefaultInnerLineHeight: Int = 21
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         // empy
+        delegate?.richEditorDidFinished(self)
     }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
