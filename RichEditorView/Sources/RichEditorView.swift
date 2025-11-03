@@ -123,18 +123,6 @@ private let DefaultInnerLineHeight: Int = 21
     // MARK: Initialization
     
     public override init(frame: CGRect) {
-        webView = RichEditorWebView(frame: CGRect.zero, configuration: printerWebViewConfiguration())
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        webView = RichEditorWebView(frame: CGRect.zero, configuration: printerWebViewConfiguration())
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private static func printerWebViewConfiguration() -> WKWebViewConfiguration {
         let userScriptSource = """
             var style = document.createElement('style');
             style.innerHTML = `
@@ -156,8 +144,36 @@ private let DefaultInnerLineHeight: Int = 21
 
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
-        
-        return config
+        webView = RichEditorWebView(frame: frame, configuration: config)
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        let userScriptSource = """
+            var style = document.createElement('style');
+            style.innerHTML = `
+              @media print {
+                * {
+                  -webkit-print-color-adjust: exact !important;
+                  print-color-adjust: exact !important;
+                }
+              }
+            `;
+            document.head.appendChild(style);
+            """
+
+        let userScript = WKUserScript(source: userScriptSource,
+                                      injectionTime: .atDocumentEnd,
+                                      forMainFrameOnly: true)
+        let contentController = WKUserContentController()
+        contentController.addUserScript(userScript)
+
+        let config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        webView = RichEditorWebView(frame: CGRect.zero, configuration: config)
+        super.init(coder: aDecoder)
+        setup()
     }
     
     private func setup() {
