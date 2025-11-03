@@ -134,7 +134,7 @@ private let DefaultInnerLineHeight: Int = 21
         setup()
     }
     
-    private func printerWebViewConfiguration() -> WKWebViewConfiguration {
+    private static func printerWebViewConfiguration() -> WKWebViewConfiguration {
         let userScriptSource = """
             var style = document.createElement('style');
             style.innerHTML = `
