@@ -123,15 +123,41 @@ private let DefaultInnerLineHeight: Int = 21
     // MARK: Initialization
     
     public override init(frame: CGRect) {
-        webView = RichEditorWebView()
+        webView = RichEditorWebView(frame: CGRect.zero, configuration: printerWebViewConfiguration())
         super.init(frame: frame)
         setup()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        webView = RichEditorWebView()
+        webView = RichEditorWebView(frame: CGRect.zero, configuration: printerWebViewConfiguration())
         super.init(coder: aDecoder)
         setup()
+    }
+    
+    private func printerWebViewConfiguration() {
+        let userScriptSource = """
+            var style = document.createElement('style');
+            style.innerHTML = `
+              @media print {
+                * {
+                  -webkit-print-color-adjust: exact !important;
+                  print-color-adjust: exact !important;
+                }
+              }
+            `;
+            document.head.appendChild(style);
+            """
+
+        let userScript = WKUserScript(source: userScriptSource,
+                                      injectionTime: .atDocumentEnd,
+                                      forMainFrameOnly: true)
+        let contentController = WKUserContentController()
+        contentController.addUserScript(userScript)
+
+        let config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        
+        return config
     }
     
     private func setup() {
